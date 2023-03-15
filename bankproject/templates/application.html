@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+        <title>Application Form</title>
+        <link rel="stylesheet" href="./responsiveRegistration.css">
+        <link rel="stylesheet" href="{% static 'css/application.css' %}">
+        <script type="text/javascript" lang="javascript" src="./responsiveRegistaration.js"></script>
+<!--        <script type="text/javascript" lang="javascript" src="{% static 'js/dropdown.js' %}"></script>-->
+          <link href="//cdn.syncfusion.com/ej2/20.4.48/ej2-base/styles/material.css" rel="stylesheet">
+<!--        new-->
+    <link href="//cdn.syncfusion.com/ej2/20.4.48/ej2-inputs/styles/material.css" rel="stylesheet">
+    <link href="//cdn.syncfusion.com/ej2/20.4.48/ej2-dropdowns/styles/material.css" rel="stylesheet">
+    <script src="https://cdn.syncfusion.com/ej2/20.4.48/dist/ej2.min.js" type="text/javascript"></script>
+    </head>
+    <body>
+    <form action="#" method="post">
+        <h1> Application Form</h1>
+        <div class="required">
+        <div class="container">
+            <div class="row">
+                <div class="col-10">
+                    <label for="fname">First Name:</label>
+                </div>
+                <div class="col-90">
+                    <input type="text" id="fname" name="firstname" placeholder="Enter your first name" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="lname">Last Name:</label>
+                </div>
+                <div class="col-90">
+                    <input type="text" id="lname" name="lastname" placeholder="Enter your last name" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="email">Email:</label>
+                </div>
+                <div class="col-90">
+                    <input type="email" id="email" name="email" placeholder="it should contain @,." required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="mobile">Mobile:</label>
+                </div>
+                <div class="col-90">
+                    <input type="tel" id="mobile" name="mobile" placeholder="only 10 digits are allowed" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="gender" required>Gender:</label>
+                </div>
+                <div class="col-90">
+                    <input type="radio" id="male" name="gender" value="male"/>Male
+                    <input type="radio" id="female" name="gender" value="female"/>Female
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="dob">Date Of Birth:</label>
+                </div>
+                <div class="col-90">
+                    <input type="Date" id="dob" name="dob" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="address">Address:</label>
+                </div>
+                <div class="col-90">
+                    <textarea name="address" id="address" cols="30" rows="10" required></textarea>
+                </div>
+            </div>
+<!--            <div class="row">-->
+<!--                <div class="col-10">-->
+<!--                    <label for="city">City:</label>-->
+<!--                </div>-->
+<!--                <div class="col-90">-->
+<!--                    <input type="text" id="city" name="city" maxlength="10">-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="row" style="width:600px;">
+<!--                dropdown-->
+                <div class="col-10">
+                    <label for="districts">District:</label>
+                </div>
+                    <div class="col-90" style="padding-left:60px;">
+                        <input type="text" id="districts" name="districts" maxlength="10" required/>
+                    </div>
+            </div>
+             <div class="row" style="width:600px;">
+                  <div class="col-10">
+                      <label for="branches">Branch:</label>
+                  </div>
+                   <div class="col-90" style="padding-left:60px;">
+                       <input type="text" id="branches" name="branches" required>
+                   </div>
+             </div>
+                <script>
+                    var ele = document.getElementById('container');
+                    if(ele) {
+                    ele.style.visibility = "visible";
+                     }
+                </script>
+                <script src="{% static 'js/dropdown.js '%}" type="text/javascript"></script>
+
+<!--continue-->
+            <div class="row">
+                <div class="col-10">
+                    <label for="qualification" required >Account Type: </label>
+                </div>
+                <div class="col-90">
+                    <select name="qualification" id="qualification">
+                        <option value=" ">Select Account Type:</option>
+                        <option value="Graduation">Savings account</option>
+                        <option value="BTech.">Salary account</option>
+                        <option value="MTech.">Fixed deposit account</option>
+                        <option value="MCA">Recurring deposit account</option>
+                        <option value="BCA">NRI account</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="specialization">Meterials Provided:</label>
+                </div>
+                <div class="col-90">
+                    <input type="checkbox" class="specialization" id="cs" name="specialization[]" value="Computer Science">Debit Card<br/>
+                    <input type="checkbox" class="specialization" id="it" name="specialization[]" value="Information Technology">Credir Card<br/>
+                    <input type="checkbox" class="specialization" id="ca" name="specialization[]" value="Computer Architecture">Cheque Book<br/>
+                </div>
+            </div>
+            <br><br>
+            <div class="row required">
+
+                <button type="submit" class="btn"  onclick="openPopup()">Register</button>&nbsp;&nbsp;&nbsp;
+                <div class="popup" id="popup">
+                    <h2>Application Registered</h2><br>
+                    <h2><a href="/" onclick="closePopup()" >Return to homepage</a></h2>
+                </div>
+                <script>
+                   let popup=document.getElementById("popup");
+                   function openPopup(){
+                   popup.classList.add("open-popup");
+                   }
+                   function closePopup(){
+                   popup.classList.remove("open-popup");
+                   }
+                </script>
+                <a class="logout-btn " href="{% url 'logout' %}" >Logout</a>
+            </div>
+        </div>
+        </div>
+        </form>
+    </body>
+</html>
