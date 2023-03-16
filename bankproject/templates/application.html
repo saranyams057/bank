@@ -1,0 +1,206 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+        <title>Application Form</title>
+        <link rel="stylesheet" href="./responsiveRegistration.css">
+        <link rel="stylesheet" href="{% static 'css/application.css' %}">
+        <script type="text/javascript" lang="javascript" src="./responsiveRegistaration.js"></script>
+<!--        <script type="text/javascript" lang="javascript" src="{% static 'js/dropdown.js' %}"></script>-->
+          <link href="//cdn.syncfusion.com/ej2/20.4.48/ej2-base/styles/material.css" rel="stylesheet">
+<!--        new-->
+    <link href="//cdn.syncfusion.com/ej2/20.4.48/ej2-inputs/styles/material.css" rel="stylesheet">
+    <link href="//cdn.syncfusion.com/ej2/20.4.48/ej2-dropdowns/styles/material.css" rel="stylesheet">
+    <script src="https://cdn.syncfusion.com/ej2/20.4.48/dist/ej2.min.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <form name="RegForm" method="POST">
+            {% csrf_token %}
+            <h1> Fill out form to get your loan</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-10">
+                        <label for="fname">First Name:</label>
+                    </div>
+                    <div class="col-90">
+                        <input type="text" id="fname" name="firstname" placeholder="Enter your first name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10">
+                        <label for="lname">Last Name:</label>
+                    </div>
+                    <div class="col-90">
+                        <input type="text" id="lname" name="lastname" placeholder="Enter your last name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10">
+                        <label for="email">Email:</label>
+                    </div>
+                    <div class="col-90">
+                        <input type="email" id="email" name="email" placeholder="it should contain @,.">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10">
+                        <label for="mobile">Mobile:</label>
+                    </div>
+                    <div class="col-90">
+                        <input type="tel" id="mobile" name="mobile" placeholder="only 10 digits are allowed">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10">
+                        <label for="gender" id="gender">Gender:</label>
+                    </div>
+                    <div class="col-90">
+                        <input type="radio" id="male" name="gender" value="male"/>Male
+                        <input type="radio" id="female" name="gender" value="female"/>Female
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10">
+                        <label for="dob">Date Of Birth:</label>
+                    </div>
+                    <div class="col-90">
+                        <input type="Date" id="dob" name="dob">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10">
+                        <label for="address">Address:</label>
+                    </div>
+                    <div class="col-90">
+                        <textarea name="address" id="address" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="row" style="width:600px;">
+    <!--                dropdown-->
+                    <div class="col-10">
+                        <label for="district">District:</label>
+                    </div>
+                    <div class="col-90" style="padding-left:60px;">
+                        <input type="text" id="district" name="district" maxlength="10">
+                    </div>
+                </div>
+                 <div class="row" style="width:600px;">
+                      <div class="col-10">
+                          <label for="branch">Branch:</label>
+                      </div>
+                       <div class="col-90" style="padding-left:60px;">
+                           <input type="text" id="branch" name="branch">
+                       </div>
+                 </div>
+                <script>
+                     ej.base.registerLicense('ORg4AjUWIQA/Gnt2VVhkQlFacldJWXxIekx0RWFab1p6cFZMYV5BNQtUQF1hSn5Qd0BjXXtacHBQTmVd');
+                     var ele = document.getElementById('container');
+                     if(ele) {
+                        ele.style.visibility = "visible";
+                     }
+                </script>
+                <script src="{% static 'js/dropdown.js '%}" type="text/javascript"></script>
+
+    <!--continue-->
+                <div class="row">
+                    <div class="col-10">
+                        <label for="account" >Account Type: </label>
+                    </div>
+                    <div class="col-90">
+                        <select name="account" id="account">
+                            <option value=" ">Select Account Type:</option>
+                            <option value="Graduation">Savings account</option>
+                            <option value="BTech.">Salary account</option>
+                            <option value="MTech.">Fixed deposit account</option>
+                            <option value="MCA">Recurring deposit account</option>
+                            <option value="BCA">NRI account</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10">
+                        <label for="meterials" required>Meterials Provided:</label>
+                    </div>
+                    <div class="col-90">
+                        <input type="checkbox" class="meterials" id="cs" name="meterials[]" value="Debit Card">Debit Card<br/>
+                        <input type="checkbox" class="meterials" id="it" name="meterials[]" value="Credit Card">Credit Card<br/>
+                        <input type="checkbox" class="meterials" id="ca" name="meterials[]" value="Cheque Book">Cheque Book<br/>
+                    </div>
+                </div>
+                <br><br>
+                <div class="row">
+                    <div class="popup" id="popup">
+                        <h2>Application Registered</h2><br>
+                        <h2><a href="/" >Return to homepage</a></h2>
+                    </div>
+                    <input type="button" class="logout-btn" id="btnCheck" value="Register" onclick="return ValidateTextBox()" />
+<!--                    <button  onclick="Validate()">click</button>-->
+<!--                        <a class="btn btn-default"  href="">Submit Application</a>-->
+                        <a class="logout-btn " href="{% url 'logout' %}" >Logout</a>
+                    <script type="text/javascript">
+                            function ValidateTextBox() {
+                               var flag=0;
+                               if (document.getElementById("fname").value.trim() == "") {
+                                  window.alert("Please enter Name!");
+                                  flag=1;
+                                  return false;
+                                }
+                               if (document.getElementById("lname").value.trim() == "") {
+                                  window.alert("Please enter Name!");
+                                  flag=1;
+                                  return false;
+                               }
+                               if (document.getElementById("email").value.trim() == "" ){
+                                    window.alert("Please enter a valid e-mail address.");
+                                    email.focus();
+                                    flag=1;
+                                    return false;
+                                }
+                               if (document.getElementById("mobile").value.trim() == "") {
+                                    alert("Please enter valid phone number.");
+                                    mobile.focus();
+                                    flag=1;
+                                    return false;
+                               }
+                               if (document.getElementById("gender").value == "") {
+                                    alert("Please enter gender.");
+                                    mobile.focus();
+                                    flag=1;
+                                    return false;
+                               }
+                               if (document.getElementById("dob").value == "") {
+                                    alert("Please enter dob.");
+                                    mobile.focus();
+                                    flag=1;
+                                    return false;
+                               }
+                               if (document.getElementById("address").value.trim() == "") {
+                                    window.alert("Please enter your address.");
+                                    address.focus();
+                                    flag=1;
+                                    return false;
+                               }
+                               if (document.getElementById("district").value == "") {
+                                    alert("Please select district");
+                                    password.focus();
+                                    flag=1;
+                                    return false;
+                               }
+                               if (document.getElementById("branch").value == ""){
+                                    alert("branch");
+                                    password.focus();
+                                    flag=1;
+                                    return false;
+                               }
+                               if(flag==0){
+                                    var pop=document.getElementById("popup")
+                                    popup.classList.add("open-popup");
+                               }
+                            };
+                    </script>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
